@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="">
+{% endblock %}
+
+
+{% block content %}
+</div>
+        </nav>
+        <div class="main">
+            <div class="main_tag">
+                <h1>ДОБРО ПОЖАЛОВАТЬ<br><span>В КНИЖНЫЙ МАГАЗИН</span></h1>
+                <p>
+                    Добро пожаловать в мир книг! Наш интернет-магазин – это место, где оживают страницы, а каждая книга открывает двери в новые миры. У нас вы найдете произведения для любого настроения: захватывающие детективы, вдохновляющие романы, познавательные научные труды и яркие детские книги. Мы предлагаем удобный поиск, быструю доставку и качественный сервис.
+                </p>
+                <a href="#" class="main_btn">Подробнее</a>
+            </div>
+            <div class="main_img">
+                <img src="{% static "deps/images/table.png" %}">
+            </div>
+        </div>
+
+    </section>
+    <!--Services-->
+    <div class="services">
+
+        <div class="services_box">
+
+            <div class="services_card">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h3>Быстрая доставка</h3>
+                <p>
+                  Наслаждайтесь чтением уже через несколько дней после оформления покупки!
+                </p>
+            </div>
+
+            <div class="services_card">
+                <i class="fa-solid fa-headset"></i>
+                <h3>24 x 7 Поддержка</h3>
+                <p>
+                    Свяжитесь с нашей службой поддержки, и мы ответим на все ваши вопросы быстро и профессионально.
+                </p>
+            </div>
+
+            <div class="services_card">
+                <i class="fa-solid fa-tag"></i>
+                <h3>Лучшие Цены</h3>
+                <p>
+                    У нас вы найдете отличные предложения, акции и скидки, чтобы чтение стало еще приятнее.
+                </p>
+            </div>
+
+            <div class="services_card">
+                <i class="fa-solid fa-lock"></i>
+                <h3>Безопасность</h3>
+                <p>
+                    Мы используем только проверенные и защищенные способы оплаты, чтобы ваши данные оставались в безопасности.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <!--About-->
+    <div class="about">
+        <div class="about_image">
+            <img src="image/about.png">
+        </div>
+        <div class="about_tag">
+            <h1>Про нас</h1>
+            <p>
+              Мы – команда, которая верит в магию книг и их способность менять жизни. Наш интернет-магазин создан для всех, кто любит читать и хочет находить любимые произведения легко и удобно. Мы гордимся широким ассортиментом, высоким качеством обслуживания и стремимся сделать каждую вашу покупку особенной.
+
+Наша миссия – вдохновлять людей на чтение и помогать находить истории, которые запомнятся навсегда. Спасибо, что выбираете нас!
+            </p>
+            <a href="#" class="about_btn">Подробнее</a>
+        </div>
+
+    </div>
+
+    <!--Books-->
+
+    <div class="featured_boks">
+
+        <h1>Рекомендуемые книги</h1>
+
+        <div class="featured_book_box">
+
+            <div class="featured_book_card">
+
+                <div class="featurde_book_img">
+                    <img src="image/book_1.jpg">
+                </div>
+
+                <div class="featurde_book_tag">
+                    <h2>Design and font</h2>
+                    <p class="writer">Coco Goose</p>
+                    <div class="categories">Design</div>
+                    <p class="book_price">$15.99<sub><del>$25.99</del></sub></p>
+                    <a href="#" class="f_btn">Подробнее</a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!--Arrivals-->
+
+    <div class="arrivals">
+        <h1>Новые поступления</h1>
+
+        <div class="arrivals_box">
+
+            <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="image/arrival_1.jpg">
+                </div>
+                <div class="arrivals_tag">
+                    <p>The Giver</p>
+                    <div class="arrivals_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="arrivals_btn">Подробнее</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--reviews-->
+
+    <div class="reviews">
+        <h1>Отзывы</h1>
+        <div class="review_box">
+            <div class="review_card">
+                <i class="fa-solid fa-quote-right"></i>
+                <div class="card_top">
+                    <img src="image/review_1.png">
+                </div>
+                <div class="card">
+                    <h2>Alexander Krakov</h2>
+                    <p>Отличный книжный магазин! Уже несколько раз заказывал здесь книги, и каждый раз остаюсь доволен.
+                    </p>
+                    <div class="review_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Banner-->
+    <div class="banner">
+        <a href="#" class="banner_btn">Подробнее</a>
+    </div>
+    <!--Blog-->
+    <div class="blog">
+        <h1>Наши Блоги</h1>
+        <div class="blog_box">
+
+            <div class="blog_card">
+                <div class="blog_img">
+                    <img src="image/blog_1.jpg">
+                </div>
+                <div class="blog_tag">
+                    <h2>Как выбрать книгу для подарка?</h2>
+                    <p>
+                        Ищете идеальный подарок для близкого человека? Книга — всегда отличное решение! В нашем магазине вы найдете книги на любой вкус: от классики до современных бестселлеров.
+                    </p>
+                    <div class="blog_icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block footer %}
+{% endblock %}
+
+
