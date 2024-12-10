@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from goods.models import Categories
+from goods.models import Categories, Products
 
 
 class IndexView(TemplateView):
@@ -9,8 +9,7 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = 'Home - Главная'
-        context['content'] = "Магазин мебели HOME"
+        context['products'] = Products.objects.all()  # Получаем все объекты Products
         return context
 
 

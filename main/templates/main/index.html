@@ -15,7 +15,7 @@
                 <p>
                     Добро пожаловать в мир книг! Наш интернет-магазин – это место, где оживают страницы, а каждая книга открывает двери в новые миры. У нас вы найдете произведения для любого настроения: захватывающие детективы, вдохновляющие романы, познавательные научные труды и яркие детские книги. Мы предлагаем удобный поиск, быструю доставку и качественный сервис.
                 </p>
-                <a href="#" class="main_btn">Подробнее</a>
+                <a href="{% url 'catalog:all' %}" class="main_btn">Подробнее</a>
             </div>
             <div class="main_img">
                 <img src="{% static "deps/images/table.png" %}">
@@ -24,48 +24,12 @@
 
     </section>
     <!--Services-->
-    <div class="services">
-
-        <div class="services_box">
-
-            <div class="services_card">
-                <i class="fa-solid fa-truck-fast"></i>
-                <h3>Быстрая доставка</h3>
-                <p>
-                  Наслаждайтесь чтением уже через несколько дней после оформления покупки!
-                </p>
-            </div>
-
-            <div class="services_card">
-                <i class="fa-solid fa-headset"></i>
-                <h3>24 x 7 Поддержка</h3>
-                <p>
-                    Свяжитесь с нашей службой поддержки, и мы ответим на все ваши вопросы быстро и профессионально.
-                </p>
-            </div>
-
-            <div class="services_card">
-                <i class="fa-solid fa-tag"></i>
-                <h3>Лучшие Цены</h3>
-                <p>
-                    У нас вы найдете отличные предложения, акции и скидки, чтобы чтение стало еще приятнее.
-                </p>
-            </div>
-
-            <div class="services_card">
-                <i class="fa-solid fa-lock"></i>
-                <h3>Безопасность</h3>
-                <p>
-                    Мы используем только проверенные и защищенные способы оплаты, чтобы ваши данные оставались в безопасности.
-                </p>
-            </div>
-        </div>
 
     </div>
     <!--About-->
     <div class="about">
         <div class="about_image">
-            <img src="image/about.png">
+            <img src="{% static "deps/images/about.png" %}">
         </div>
         <div class="about_tag">
             <h1>Про нас</h1>
@@ -74,7 +38,7 @@
 
 Наша миссия – вдохновлять людей на чтение и помогать находить истории, которые запомнятся навсегда. Спасибо, что выбираете нас!
             </p>
-            <a href="#" class="about_btn">Подробнее</a>
+            <a href="{% url "main:about" %}" class="about_btn">Подробнее</a>
         </div>
 
     </div>
@@ -90,7 +54,7 @@
             <div class="featured_book_card">
 
                 <div class="featurde_book_img">
-                    <img src="image/book_1.jpg">
+                    <img src="{% static "deps/images/book_1.jpg" %}">
                 </div>
 
                 <div class="featurde_book_tag">
@@ -112,54 +76,38 @@
         <h1>Новые поступления</h1>
 
         <div class="arrivals_box">
-
-            <div class="arrivals_card">
-                <div class="arrivals_image">
-                    <img src="image/arrival_1.jpg">
-                </div>
-                <div class="arrivals_tag">
-                    <p>The Giver</p>
-                    <div class="arrivals_icon">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-stroke"></i>
+            {% for product in products %}
+                <div class="arrivals_card">
+                    <div class="arrivals_image">
+                        {% if product.image %}
+                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                        {% else %}
+                            <img src="image/default_arrival.jpg" alt="Default Arrival Image">
+                        {% endif %}
                     </div>
-                    <a href="#" class="arrivals_btn">Подробнее</a>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <!--reviews-->
-
-    <div class="reviews">
-        <h1>Отзывы</h1>
-        <div class="review_box">
-            <div class="review_card">
-                <i class="fa-solid fa-quote-right"></i>
-                <div class="card_top">
-                    <img src="image/review_1.png">
-                </div>
-                <div class="card">
-                    <h2>Alexander Krakov</h2>
-                    <p>Отличный книжный магазин! Уже несколько раз заказывал здесь книги, и каждый раз остаюсь доволен.
-                    </p>
-                    <div class="review_icon">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star-half-stroke"></i>
+                    <div class="arrivals_tag">
+                        <p>{{ product.name }}</p>
+                        <div class="arrivals_icon">
+                            <!-- Пример вывода рейтинга звезд -->
+                            {% for i in "12345" %}
+                                {% if forloop.counter <= product.quantity|default:5 %}
+                                    <i class="fa-solid fa-star"></i>
+                                {% elif forloop.counter == product.quantity|default:5 %}
+                                    <i class="fa-solid fa-star-half-stroke"></i>
+                                {% else %}
+                                    <i class="fa-regular fa-star"></i>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <a href="{% url "catalog:product" product.slug %}" class="arrivals_btn">Подробнее</a>
                     </div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
-    </div>
     <!--Banner-->
     <div class="banner">
         <a href="#" class="banner_btn">Подробнее</a>
+    </div>
     </div>
     <!--Blog-->
     <div class="blog">

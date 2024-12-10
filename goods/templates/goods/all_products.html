@@ -1,0 +1,365 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookStore</title>
+    <link rel="stylesheet" href="{% static "deps/css/my_css.css" %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+    <section>
+
+        <nav>
+
+            <div class="logo">
+                <img src="image/logo.png">
+            </div>
+
+            <ul>
+                <li><a href="#Home">Домой</a></li>
+                <li><a href="#About">О нас</a></li>
+                <li><a href="#Featured">Рекомендуемые</a></li>
+                <li><a href="#Arrivals">Новые Поступления</a></li>
+                <li><a href="#Reviews">Отзывы</a></li>
+                <li><a href="#Blog">Блоги</a></li>
+            </ul>
+
+            <div class="social_icon">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-heart"></i>
+            </div>
+            <div class="cart_icon">
+    <i class="fa-solid fa-cart-shopping"></i>
+    <span id="cart-count">0</span>
+</div>
+
+
+        </nav>
+    </section>
+
+
+
+
+    <!--Services-->
+
+    <div class="services">
+
+        <div class="services_box">
+
+            <div class="services_card">
+                <i class="fa-solid fa-truck-fast"></i>
+                <h3>Быстрая доставка</h3>
+                <p>
+                  Наслаждайтесь чтением уже через несколько дней после оформления покупки!
+                </p>
+            </div>
+
+            <div class="services_card">
+                <i class="fa-solid fa-headset"></i>
+                <h3>24 x 7 Поддержка</h3>
+                <p>
+                    Свяжитесь с нашей службой поддержки, и мы ответим на все ваши вопросы быстро и профессионально.
+                </p>
+            </div>
+
+            <div class="services_card">
+                <i class="fa-solid fa-tag"></i>
+                <h3>Лучшие Цены</h3>
+                <p>
+                    У нас вы найдете отличные предложения, акции и скидки, чтобы чтение стало еще приятнее.
+                </p>
+            </div>
+
+            <div class="services_card">
+                <i class="fa-solid fa-lock"></i>
+                <h3>Безопасность</h3>
+                <p>
+                    Мы используем только проверенные и защищенные способы оплаты, чтобы ваши данные оставались в безопасности.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--Books-->
+
+    <div class="featured_boks">
+
+        <h1>Рекомендуемые книги</h1>
+
+        <div class="featured_book_box">
+
+            <div class="featured_book_card">
+
+                <div class="featurde_book_img">
+                    <img src="image/book_1.jpg">
+                </div>
+
+                <div class="featurde_book_tag">
+                    <h2>Design and font</h2>
+                    <p class="writer">Coco Goose</p>
+                    <div class="categories">Design</div>
+                    <p class="book_price">$15.99<sub><del>$25.99</del></sub></p>
+                    <a href="#" class="f_btn">Подробнее</a>
+                </div>
+
+            </div>
+
+            <div class="featured_book_card">
+
+                <div class="featurde_book_img">
+                    <img src="image/book_2.jpg">
+                </div>
+
+                <div class="featurde_book_tag">
+                    <h2>Subletteo</h2>
+                    <p class="writer">John Anik</p>
+                    <div class="categories">Romance</div>
+                    <p class="book_price">$10.00<sub><del>$30.00</del></sub></p>
+                    <a href="#" class="f_btn">Подробнее</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--Arrivals-->
+
+    <div class="arrivals">
+        <h1>Новые поступления</h1>
+
+        <div class="arrivals_box">
+
+            <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="image/arrival_1.jpg">
+                </div>
+                <div class="arrivals_tag">
+                    <p>The Giver</p>
+                    <div class="arrivals_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="arrivals_btn">Подробнее</a>
+                </div>
+            </div>
+
+            <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="image/arrival_2.jpg">
+                </div>
+                <div class="arrivals_tag">
+                    <p>The wright brothers</p>
+                    <div class="arrivals_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="arrivals_btn">Подробнее</a>
+                </div>
+            </div>
+
+            <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="image/arrival_3.jpg">
+                </div>
+                <div class="arrivals_tag">
+                    <p>Radical gardening</p>
+                    <div class="arrivals_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="arrivals_btn">Подробнее</a>
+                </div>
+            </div>
+                        <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="image/arrival_3.jpg">
+                </div>
+                <div class="arrivals_tag">
+                    <p>Radical gardening</p>
+                    <div class="arrivals_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="arrivals_btn">Подробнее</a>
+                </div>
+            </div>
+                        <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="image/arrival_3.jpg">
+                </div>
+                <div class="arrivals_tag">
+                    <p>Radical gardening</p>
+                    <div class="arrivals_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="arrivals_btn">Подробнее</a>
+                </div>
+            </div>
+                        <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="image/arrival_3.jpg">
+                </div>
+                <div class="arrivals_tag">
+                    <p>Radical gardening</p>
+                    <div class="arrivals_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="arrivals_btn">Подробнее</a>
+                </div>
+            </div>
+
+                        <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="image/arrival_3.jpg">
+                </div>
+                <div class="arrivals_tag">
+                    <p>Radical gardening</p>
+                    <div class="arrivals_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="arrivals_btn">Подробнее</a>
+                </div>
+            </div>
+                        <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="image/arrival_3.jpg">
+                </div>
+                <div class="arrivals_tag">
+                    <p>Radical gardening</p>
+                    <div class="arrivals_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="arrivals_btn">Подробнее</a>
+                </div>
+            </div>
+                        <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="image/arrival_3.jpg">
+                </div>
+                <div class="arrivals_tag">
+                    <p>Radical gardening</p>
+                    <div class="arrivals_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="arrivals_btn">Подробнее</a>
+                </div>
+            </div>
+                        <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="image/arrival_3.jpg">
+                </div>
+                <div class="arrivals_tag">
+                    <p>Radical gardening</p>
+                    <div class="arrivals_icon">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <a href="#" class="arrivals_btn">Подробнее</a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="blog">
+        <h1>Наши Блоги</h1>
+        <div class="blog_box">
+
+            <div class="blog_card">
+                <div class="blog_img">
+                    <img src="image/blog_1.jpg">
+                </div>
+                <div class="blog_tag">
+                    <h2>Как выбрать книгу для подарка?</h2>
+                    <p>
+                        Ищете идеальный подарок для близкого человека? Книга — всегда отличное решение! В нашем магазине вы найдете книги на любой вкус: от классики до современных бестселлеров.
+                    </p>
+                    <div class="blog_icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog_card">
+                <div class="blog_img">
+                    <img src="image/blog_2.jpg">
+                </div>
+                <div class="blog_tag">
+                    <h2>5 книг, которые стоит прочитать в этом году</h2>
+                    <p>
+                        Чтение — это не только приятное времяпрепровождение, но и важный способ развития. В этом блоге мы расскажем о пользе чтения для умственного развития, как книги помогают расширить кругозор и развить воображение. Читайте книги и становитесь лучшей версией себя!
+                    </p>
+                    <div class="blog_icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="blog_card">
+                <div class="blog_img">
+                    <img src="image/blog_3.jpg">
+                </div>
+                <div class="blog_tag">
+                    <h2>Наши любимые книги для детей</h2>
+                    <p>
+                        Чтение — это отличный способ развивать воображение и учить детей важным жизненным урокам. Мы подобрали для вас лучшие книги для детей разного возраста. Они подарят вашим детям радость, обучат и развлекут.
+                    </p>
+                    <div class="blog_icon">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

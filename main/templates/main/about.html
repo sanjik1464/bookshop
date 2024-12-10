@@ -1,29 +1,26 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block css %}
-    <link rel="stylesheet" href="{% static "deps/css/my_footer_css.css" %}">
-{% endblock %}
-
-{% block modal_cart %}
-{% include "includes/cart_button.html" %}
-{% endblock  %}
-
 {% block content %}
-    <div class="mt-5 pt-5 bg-white custom-shadow rounded">
-        <div class="container p-4">
-        <h2 class="m-2"><strong>{{ content }}</strong></h2>
-        <p class="m-2">{{ text_on_page }}</p>
+    <!--About-->
+    <div class="about">
+        <div class="about_image">
+
         </div>
+        <div class="about_tag">
+            <h1>Про нас</h1>
+            <p>
+              Мы – команда, которая верит в магию книг и их способность менять жизни. Наш интернет-магазин создан для всех, кто любит читать и хочет находить любимые произведения легко и удобно. Мы гордимся широким ассортиментом, высоким качеством обслуживания и стремимся сделать каждую вашу покупку особенной.
+
+Наша миссия – вдохновлять людей на чтение и помогать находить истории, которые запомнятся навсегда. Спасибо, что выбираете нас!
+            </p>
+
+        </div>
+
     </div>
+
 {% endblock %}
 
-{% block footer %}
-<footer class="py-4 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">Copyright &copy; Home Python Hub Studio 2023 - 2024</p>
-    </div>
-</footer>
-{% endblock %}
+
 
 

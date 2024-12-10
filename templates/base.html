@@ -43,7 +43,7 @@
                                 Информация
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item  text-white" href="#">Доставка и оплата</a></li>
+                                <li><a class="dropdown-item  text-white" href="{% url "user:my-orders" %}">Доставка и оплата</a></li>
                                 <li><a class="dropdown-item  text-white" href="#">Контактная информация</a></li>
                                 <li><a class="dropdown-item  text-white" href="{% url "main:about" %}">Про нас</a></li>
                             </ul>
@@ -62,7 +62,6 @@
                                     Мой профиль
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item  text-white" href="carts/cart.html">Корзина</a></li>
                                     <li><a class="dropdown-item  text-white" href="{% url "user:profile" %}">Личный кабинет</a>
                                     </li>
                                     {% if user.is_admin or user.is_staff %}
@@ -77,7 +76,7 @@
                         {% endif %}
                     </ul>
                     <form class="d-flex" role="search" action="{% url "catalog:search" %}" method="get">
-                        <input class="form-control me-2" type="search" name="q" placeholder="Search" aria-label="Search">
+                        <input class="form-control me-2" type="search" name="q" placeholder="Книги" aria-label="ПОи">
                         <button class="btn btn-outline-success text-white" type="submit">Поиск</button>
                         {% include "includes/cart_button.html" %}
                     </form>
@@ -126,59 +125,6 @@
             </div>
         </div>
     </section>
-
-    <footer>
-        <div class="footer_main">
-
-            <div class="tag">
-                <img src="image/logo.png">
-                <p>Выбирайте книги, которые зажгут ваше воображение, подарят вдохновение или помогут узнать что-то новое.
-                </p>
-
-            </div>
-
-            <div class="tag">
-                <h1>Быстрые ссылки</h1>
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Featured</a>
-                <a href="#">Arrivals</a>
-                <a href="#">Reviews</a>
-                <a href="#">Blog</a>
-            </div>
-            <div class="tag">
-                <h1>Контакты</h1>
-                <a href="#"><i class="fa-solid fa-phone"></i>+7 777 707 7707</a>
-                <a href="#"><i class="fa-solid fa-phone"></i>+7 707 777 0777</a>
-                <a href="#"><i class="fa-solid fa-envelope"></i>bookstore@mail.ru</a>
-
-            </div>
-            <div class="tag">
-                <h1>Подпишитесь на нас</h1>
-                <div class="social_link">
-                    <i class="fa-brands fa-facebook-f"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-linkedin-in"></i>
-                </div>
-            </div>
-            <div class="tag">
-                <h1>Рассылка</h1>
-                <div class="search_bar">
-                    <input type="text" placeholder="Ваша электронная почта">
-                    <button type="submit">Подписаться</button>
-                </div>
-            </div>
- 	</main>
-    <div id="cartModal" class="modal hidden">
-        <h2>Ваша корзина</h2>
-        <ul id="cartItems"></ul>
-        <p>Итого: <span id="totalPrice">0</span> тг</p>
-        <button id="checkoutButton">Оформить заказ</button>
-        <button id="closeCart">Закрыть</button>
-        </div>
-        <p class="end">Design By<span><i class="fa-solid fa-face-grin"></i> Serzhan Borash</span></p>
-    </footer>
 
     <script src="{% static "deps/js/jquery/jquery-3.7.0.min.js" %}"></script>
     <script src="{% static "deps/js/jquery-ajax.js" %}"></script>
