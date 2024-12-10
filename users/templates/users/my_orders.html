@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* Основные стили для таблицы заказов */
+    .order-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        background-color: rgba(44, 62, 80, 0.8); /* Прозрачный темный фон */
+        color: #ecf0f1;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    /* Заголовки таблицы заказов */
+    .order-table th {
+        padding: 15px;
+        text-align: left;
+        background-color: rgba(52, 152, 219, 0.9); /* Синий фон с прозрачностью */
+        font-weight: bold;
+        border-bottom: 2px solid #34495e;
+    }
+
+    /* Строки таблицы заказов */
+    .order-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #34495e;
+    }
+
+    /* Ссылка на товар в таблице заказов */
+    .order-item-link {
+        color: #ecf0f1;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .order-item-link:hover {
+        color: #3498db;
+        text-decoration: underline;
+    }
+
+    /* Строки для информации о заказе */
+    .order-info-row {
+        background-color: rgba(22, 160, 133, 0.8); /* Прозрачный зеленый */
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 15px;
+        color: #ecf0f1;
+        font-size: 15px;
+        display: none; /* Скрыто по умолчанию */
+    }
+
+    .order-info-row strong {
+        font-size: 18px;
+    }
+
+    /* Стиль для кнопки "Подробнее" */
+    .order-details-btn {
+        display: inline-block;
+        padding: 8px 12px; /* Уменьшаем размер кнопки */
+        background-color: #2980b9;
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-top: 10px;
+        transition: background-color 0.3s ease;
+        font-size: 14px; /* Уменьшаем шрифт кнопки */
+    }
+
+    .order-details-btn:hover {
+        background-color: #1d6fa5; /* Темно-синий при наведении */
+    }
+
+    /* Стиль для пустого состояния */
+    .empty-message {
+        text-align: center;
+        color: #e74c3c;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    /* Левое выравнивание кнопки */
+    .order-info-row .order-details-btn {
+        text-align: left;
+        margin-left: 0; /* Убираем отступы слева */
+    }
+</style>
+
+<table class="order-table">
+    <thead>
+        <tr>
+            <th>Название товара</th>
+            <th>Количество</th>
+            <th>Цена за единицу</th>
+            <th>Общая стоимость</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+            {% for item in order.orderitem_set.all %}
+                <tr>
+                    <td>
+                        {% if item.product.slug %}
+                            <a class="order-item-link" href="{% url 'goods:product' item.product.slug %}">{{ item.product.name }}</a>
+                        {% else %}
+                            {{ item.product.name }} <!-- Если slug нет, просто показываем название товара -->
+                        {% endif %}
+                    </td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.price }}</td>
+                    <td>{{ item.products_price }}</td>
+                </tr>
+            {% endfor %}
+
+            <!-- Информация о заказе -->
+            <tr>
+                <td colspan="4" class="order-info-row" id="order-info-{{ order.id }}">
+                    <strong>Заказ №{{ order.id }}</strong> — Дата: {{ order.created_timestamp|date:"d.m.Y H:i" }}<br>
+
+                    <strong>Статус: </strong> {{ order.status }}<br>
+
+                    <strong>Оплачено: </strong>
+                    {% if order.is_paid %}
+                        Да
+                    {% else %}
+                        Нет
+                    {% endif %}<br>
+
+                    <strong>Оплата при получении: </strong>
+                    {% if order.payment_on_get %}
+                        Да
+                    {% else %}
+                        Нет
+                    {% endif %}<br>
+
+                    {% if order.payment_on_get %}
+                        <strong>Доставка требуется: </strong> Да<br>
+                    {% else %}
+                        <strong>Доставка не требуется</strong><br>
+                    {% endif %}
+
+                    <strong>Адрес доставки: </strong> {{ order.delivery_address }}<br>
+
+                    <strong>Необходима доставка: </strong> {{ order.requires_delivery }}<br>
+
+                    <!-- Кнопка для взаимодействия -->
+                    {% if item.product.slug %}
+                        <a href="{% url 'goods:product' item.product.slug %}" class="order-details-btn">Подробнее о товаре</a>
+                    {% else %}
+                        <span>Информация о товаре недоступна</span> <!-- Если нет slug, выводим альтернативный текст -->
+                    {% endif %}
+                </td>
+            </tr>
+
+            <!-- Кнопка для открытия/закрытия дополнительной информации -->
+            <tr>
+                <td colspan="4" class="text-left">
+                    <button onclick="toggleOrderInfo({{ order.id }})" class="order-details-btn">
+                        {% if order.id in visible_orders %}
+                            Скрыть информацию о заказе
+                        {% else %}
+                            Показать информацию о заказе
+                        {% endif %}
+                    </button>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="4" class="empty-message">Товары отсутствуют</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<script>
+    // Функция для переключения видимости дополнительной информации о заказе
+    function toggleOrderInfo(orderId) {
+        const orderInfo = document.getElementById(`order-info-${orderId}`);
+        if (orderInfo.style.display === "none" || orderInfo.style.display === "") {
+            orderInfo.style.display = "block";  // Показываем
+        } else {
+            orderInfo.style.display = "none";   // Скрываем
+        }
+    }
+</script>
+
+{% endblock %}
