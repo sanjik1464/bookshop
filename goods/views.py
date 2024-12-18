@@ -1,9 +1,14 @@
 from django.http import Http404
 from django.views.generic import DetailView, ListView, TemplateView
+from django.db.models import Q
 
 from goods.models import Products
 from goods.utils import q_search
 
+
+def q_search(query):
+    query = query.lower()
+    return Products.objects.filter(Q(name__icontains=query))
 
 class CatalogView(ListView):
     model = Products
@@ -40,7 +45,7 @@ class CatalogView(ListView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["title"] = "Home - Каталог"
+        context["title"] = "Книга"
         context["slug_url"] = self.kwargs.get(self.slug_url_kwarg)
         return context
 

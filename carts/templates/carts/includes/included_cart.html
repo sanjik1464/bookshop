@@ -1,43 +1,49 @@
 {% load static %}
 
-<div class="card mb-3 text-bg-light shadow-lg">
+<div class="card mb-3 text-bg-light shadow-lg" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
     {% for cart in carts %}
-        <div class="card-header">
-            <h5 class="card-title">{{ cart.product.name }}</h5>
+        <div class="card-header" style="background-color: #f8f9fa; border-bottom: 1px solid #dee2e6;">
+            <h5 class="card-title" style="font-size: 1.25rem; font-weight: 600; color: #333;">{{ cart.product.name }}</h5>
         </div>
         <ul class="list-group list-group-flush">
-            <li class="list-group-item">
-                <div class="row text-center">
-                    <div class="col p-0">
-                        <div class="input-group">
+            <li class="list-group-item" style="border: none; padding: 1rem 1rem;">
+                <div class="row text-center" style="align-items: center;">
+                    <div class="col p-0 d-flex justify-content-center">
+                        <div class="input-group" style="width: 150px; margin: auto;">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-dark btn-sm decrement"
+                                <button type="button" class="btn btn-success btn-lg decrement"
                                     data-cart-id="{{ cart.id }}"
-                                    data-cart-change-url="{% url "cart:cart_change" %}">
+                                    data-cart-change-url="{% url "cart:cart_change" %}"
+                                    style="border-radius: 10%; width: 50px; height: 50px; font-size: 1.5rem; background-color: #20c997; border: none; color: white;">
                                     {% csrf_token %}
-                                    -</button>
+                                    -
+                                </button>
                             </span>
                             <input type="text" class="form-control number" value="{{ cart.quantity }}"
-                                readonly>
+                                readonly style="text-align: center; font-size: 1.1rem; padding: 0.5rem;">
                             <span class="input-group-btn">
-                                <button type="button" class="btn btn-dark btn-sm increment"
+                                <button type="button" class="btn btn-success btn-lg increment"
                                     data-cart-id="{{ cart.id }}"
-                                    data-cart-change-url="{% url "cart:cart_change" %}">
+                                    data-cart-change-url="{% url "cart:cart_change" %}"
+                                    style="border-radius: 10%; width: 50px; height: 50px; font-size: 1.5rem; background-color: #20c997; border: none; color: white;">
                                     {% csrf_token %}
-                                    +</button>
+                                    +
+                                </button>
                             </span>
                         </div>
                     </div>
                     <div class="col p-0">
-                        <p>x {{ cart.product.sell_price }} = </p>
+                        <p style="font-size: 1rem; color: #333; margin: 0;">x {{ cart.product.sell_price }} = </p>
                     </div>
-                    <div class="col p-0"><strong> {{cart.products_price}} $</strong></div>
                     <div class="col p-0">
-                        <a href="{% url "cart:cart_remove" %}" class="remove-from-cart"
-                        data-cart-id="{{ cart.id }}">
+                        <strong style="font-size: 1.2rem; color: #333;">{{ cart.products_price }} $</strong>
+                    </div>
+                    <div class="col p-0">
+                        <a href="{% url "cart:cart_remove" %}" class="remove-from-cart" data-cart-id="{{ cart.id }}"
+                            style="color: #dc3545; font-size: 1.3rem;">
                             {% csrf_token %}
                             <img class="mx-1" src="{% static "deps/icons/trash3-fill.svg" %}"
-                                alt="Catalog Icon" width="16" height="16">
+                                alt="Catalog Icon" width="20" height="20" style="cursor: pointer;">
                         </a>
                     </div>
                 </div>
@@ -45,14 +51,97 @@
         </ul>
     {% endfor %}
 </div>
-<div class="card mb-3 shadow-lg">
-    <div class="card-footer">
-        <p class="float-left">Итого <strong>{{ carts.total_quantity }}</strong> товар(а) на сумму</p>
-        <h4 class="float-left"><strong>{{ carts.total_price }} $</strong></h4>
+
+<div class="card mb-3 shadow-lg" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+    <div class="card-footer" style="background-color: #f8f9fa; border-top: 1px solid #dee2e6; padding: 1.25rem;">
+        <p class="float-left" style="font-size: 1.1rem; font-weight: 600; color: #333;">
+            Итого <strong>{{ carts.total_quantity }}</strong> товар(а) на сумму
+        </p>
+        <h4 class="float-left" style="font-size: 1.25rem; font-weight: bold; color: #333; margin-left: 1rem;">
+            <strong>{{ carts.total_price }} $</strong>
+        </h4>
     </div>
 </div>
-{% if carts and not order%}
-<a class="btn btn-dark" href="{% url "orders:create_order" %}">
+
+{% if carts and not order %}
+<a class="btn btn-primary" href="{% url "orders:create_order" %}"
+    style="font-size: 1.2rem; padding: 0.75rem 1.25rem; border-radius: 30px; background-color: #007bff; color: white; transition: background-color 0.3s;">
     Оформить заказ
 </a>
 {% endif %}
+
+<script>
+    // Обработчики для кнопок + и -
+    document.querySelectorAll('.decrement').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const cartId = e.target.dataset.cartId;
+            const url = e.target.dataset.cartChangeUrl;
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({
+                    cart_id: cartId,
+                    action: 'decrement'
+                })
+            }).then(response => {
+                if (response.ok) {
+                    location.reload(); // Обновить страницу
+                }
+            });
+        });
+    });
+
+    document.querySelectorAll('.increment').forEach(button => {
+        button.addEventListener('click', (e) => {
+            const cartId = e.target.dataset.cartId;
+            const url = e.target.dataset.cartChangeUrl;
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({
+                    cart_id: cartId,
+                    action: 'increment'
+                })
+            }).then(response => {
+                if (response.ok) {
+                    location.reload(); // Обновить страницу
+                }
+            });
+        });
+    });
+
+    // Обработчик для кнопки удаления товара
+    document.querySelectorAll('.remove-from-cart').forEach(button => {
+        button.addEventListener('click', (e) => {
+            e.preventDefault();  // Предотвратить стандартное поведение ссылки
+            const cartId = e.target.closest('a').dataset.cartId;
+            const url = e.target.closest('a').href;
+            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': csrfToken
+                },
+                body: JSON.stringify({
+                    cart_id: cartId,
+                })
+            }).then(response => {
+                if (response.ok) {
+                    location.reload(); // Обновить страницу
+                }
+            });
+        });
+    });
+</script>

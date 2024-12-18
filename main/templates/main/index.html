@@ -47,25 +47,28 @@
 
     <div class="featured_boks">
 
-        <h1>Рекомендуемые книги</h1>
+        <h1>Популярные книги</h1>
 
         <div class="featured_book_box">
+             {% for book in popular_books %}
+                <div class="featured_book_card">
+                    <div class="featurde_book_img">
+                    {% if book.image %}
+                        <img src="{{ book.image.url }}" alt="{{ book.name }}" style="width: 90%; height: 190px; object-fit: cover;">
+                    {% else %}
+                        <img src="{% static 'deps/images/default_book.jpg' %}" alt="Нет изображения" style="width: 100%; height: 300px; object-fit: cover;">
+                    {% endif %}
+                    </div>
 
-            <div class="featured_book_card">
-
-                <div class="featurde_book_img">
-                    <img src="{% static "deps/images/book_1.jpg" %}">
+                    <div class="featurde_book_tag">
+                        <h2>{{ book.name }}</h2>
+                        <p class="writer">Автор: {{ book.description|default:"Неизвестно" }}</p>
+                        <div class="categories">{{ book.category.name }}</div>
+                        <p class="book_price">${{ book.price|floatformat:0 }}<sub><del>${{ book.discounted_price|floatformat:0  }}</del></sub></p>
+                        <a href="{% url 'catalog:product' book.slug %}" class="f_btn">Подробнее</a>
+                    </div>
                 </div>
-
-                <div class="featurde_book_tag">
-                    <h2>Design and font</h2>
-                    <p class="writer">Coco Goose</p>
-                    <div class="categories">Design</div>
-                    <p class="book_price">$15.99<sub><del>$25.99</del></sub></p>
-                    <a href="#" class="f_btn">Подробнее</a>
-                </div>
-
-            </div>
+            {% endfor %}
         </div>
 
     </div>
@@ -104,34 +107,7 @@
                 </div>
             {% endfor %}
         </div>
-    <!--Banner-->
-    <div class="banner">
-        <a href="#" class="banner_btn">Подробнее</a>
     </div>
-    </div>
-    <!--Blog-->
-    <div class="blog">
-        <h1>Наши Блоги</h1>
-        <div class="blog_box">
-
-            <div class="blog_card">
-                <div class="blog_img">
-                    <img src="image/blog_1.jpg">
-                </div>
-                <div class="blog_tag">
-                    <h2>Как выбрать книгу для подарка?</h2>
-                    <p>
-                        Ищете идеальный подарок для близкого человека? Книга — всегда отличное решение! В нашем магазине вы найдете книги на любой вкус: от классики до современных бестселлеров.
-                    </p>
-                    <div class="blog_icon">
-                        <i class="fa-solid fa-calendar-days"></i>
-                        <i class="fa-solid fa-heart"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 {% endblock %}
 {% block footer %}
 {% endblock %}

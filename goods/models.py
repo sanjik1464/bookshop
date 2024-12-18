@@ -25,6 +25,7 @@ class Products(models.Model):
     discount = models.DecimalField(default=0.00, max_digits=4, decimal_places=2, verbose_name='Скидка в %')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
     category = models.ForeignKey(to=Categories, on_delete=models.CASCADE, verbose_name='Категория')
+    rating = models.FloatField(default=0.0, verbose_name='Средний рейтинг', blank=True, null=True)
 
 
     class Meta:
